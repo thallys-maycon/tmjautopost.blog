@@ -1,0 +1,181 @@
+{
+ "cats": [
+  {
+   "id": "audio",
+   "nome": "Áudio",
+   "icon": "🎧"
+  },
+  {
+   "id": "tech",
+   "nome": "Tecnologia",
+   "icon": "🖱️"
+  },
+  {
+   "id": "casa",
+   "nome": "Casa e cozinha",
+   "icon": "🍳"
+  },
+  {
+   "id": "beleza",
+   "nome": "Beleza",
+   "icon": "🧴"
+  }
+ ],
+ "prods": [
+  {
+   "id": "fone-tws-pro",
+   "cat": "audio",
+   "icon": "🎧",
+   "titulo": "Fone Bluetooth TWS com cancelamento de ruído",
+   "nota": 5,
+   "preco": "89,90",
+   "de": "159,90",
+   "off": 44,
+   "resumo": "Leve, com bateria para o dia todo e graves marcantes.",
+   "texto": "Estojo compacto que recarrega o fone várias vezes, conexão estável e microfone bom para chamadas. Serve para trabalho, estudo e academia sem exigir cuidado extra.",
+   "pros": [
+    "Bateria longa com o estojo",
+    "Cancelamento de ruído ativo",
+    "Estojo pequeno"
+   ],
+   "contras": [
+    "Sem carregamento sem fio",
+    "Aplicativo só em inglês"
+   ],
+   "link": "#"
+  },
+  {
+   "id": "fone-overear-bass",
+   "cat": "audio",
+   "icon": "🎧",
+   "titulo": "Headphone Bluetooth over-ear com graves reforçados",
+   "nota": 4,
+   "preco": "119,00",
+   "de": "199,00",
+   "off": 40,
+   "resumo": "Conforto de sobra para sessões longas de música ou filmes.",
+   "texto": "Almofadas macias e arco ajustável deixam o uso confortável por horas. O som é quente, com graves em destaque, ótimo para pop, funk e eletrônica.",
+   "pros": [
+    "Muito confortável",
+    "Graves potentes",
+    "Funciona com cabo também"
+   ],
+   "contras": [
+    "Dobra pouco para transportar",
+    "Agudos um pouco abafados"
+   ],
+   "link": "#"
+  },
+  {
+   "id": "fone-esportivo-clip",
+   "cat": "audio",
+   "icon": "🎧",
+   "titulo": "Fone esportivo Bluetooth com gancho e resistência a suor",
+   "nota": 4,
+   "preco": "49,90",
+   "de": "89,90",
+   "off": 44,
+   "resumo": "Fica firme na orelha mesmo em treinos intensos.",
+   "texto": "O gancho prende bem na corrida e na musculação, e a proteção contra suor aguenta o uso diário. Pensado para treinar, com preço bem acessível.",
+   "pros": [
+    "Encaixe firme",
+    "Resistente a suor",
+    "Preço baixo"
+   ],
+   "contras": [
+    "Som mais simples",
+    "Microfone fraco em ambientes barulhentos"
+   ],
+   "link": "#"
+  },
+  {
+   "id": "mouse-sem-fio-silencioso",
+   "cat": "tech",
+   "icon": "🖱️",
+   "titulo": "Mouse sem fio recarregável silencioso",
+   "nota": 5,
+   "preco": "39,90",
+   "de": "69,90",
+   "off": 43,
+   "resumo": "Cliques quase mudos e bateria que dura semanas.",
+   "texto": "Ideal para escritório e home office: cliques silenciosos, receptor USB pequeno e recarga por cabo. Leve e confortável para mãos médias.",
+   "pros": [
+    "Cliques silenciosos",
+    "Recarregável",
+    "Receptor compacto"
+   ],
+   "contras": [
+    "Pequeno para mãos grandes"
+   ],
+   "link": "#"
+  },
+  {
+   "id": "air-fryer-4l",
+   "cat": "casa",
+   "icon": "🍳",
+   "titulo": "Air fryer digital 4 L sem óleo",
+   "nota": 5,
+   "preco": "219,00",
+   "de": "349,00",
+   "off": 37,
+   "resumo": "Prática, rápida e fácil de limpar.",
+   "texto": "Painel digital com programas prontos e cesto antiaderente que vai à lava-louça. Cabe a refeição de 2 a 4 pessoas e esquenta em poucos minutos.",
+   "pros": [
+    "Programas prontos",
+    "Cesto fácil de limpar",
+    "Cozinha com pouco óleo"
+   ],
+   "contras": [
+    "Ocupa espaço na bancada"
+   ],
+   "link": "#"
+  },
+  {
+   "id": "serum-vitamina-c",
+   "cat": "beleza",
+   "icon": "🧴",
+   "titulo": "Sérum de vitamina C 30 ml antioxidante",
+   "nota": 4,
+   "preco": "34,90",
+   "de": "59,90",
+   "off": 42,
+   "resumo": "Textura leve e absorção rápida para o dia a dia.",
+   "texto": "Fórmula leve que absorve rápido e combina com a rotina de skincare simples. Use sempre com protetor solar durante o dia.",
+   "pros": [
+    "Textura leve",
+    "Absorção rápida",
+    "Bom custo-benefício"
+   ],
+   "contras": [
+    "Pode irritar pele muito sensível"
+   ],
+   "link": "#"
+  }
+ ],
+ "guias": [
+  {
+   "id": "melhores-fones-bluetooth-2026",
+   "cat": "audio",
+   "icon": "🎧",
+   "titulo": "Os melhores fones Bluetooth de 2026",
+   "intro": "Comparamos os fones pelos critérios que mais pesam na hora de comprar: qualidade do som, bateria, conforto e preço.",
+   "itens": [
+    {
+     "p": "fone-tws-pro",
+     "label": "Melhor custo-benefício",
+     "veredito": "Equilibra bateria, cancelamento de ruído e preço. É a escolha segura para a maioria das pessoas."
+    },
+    {
+     "p": "fone-overear-bass",
+     "label": "Melhor para música em casa",
+     "veredito": "O mais confortável do grupo e com graves fortes. Perde em portabilidade."
+    },
+    {
+     "p": "fone-esportivo-clip",
+     "label": "Melhor para treinar",
+     "veredito": "O gancho segura firme e o preço é o menor da lista, mas o som é mais básico."
+    }
+   ]
+  }
+ ]
+}

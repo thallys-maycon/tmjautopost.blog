@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TMJautopost — Ofertas e comparativos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050805;--card:#0b110b;--line:#143314;--tx:#e6ffe6;--mut:#7fa07f;--neon:#39ff14;--pink:#ff2e88;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Rajdhani",system-ui,sans-serif;font-size:18px;
+background-image:linear-gradient(rgba(57,255,20,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,.04) 1px,transparent 1px);background-size:36px 36px}
+.px{font-family:"Press Start 2P","Courier New",monospace}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--neon);box-shadow:0 0 10px var(--neon);z-index:50}
+#intro{position:fixed;inset:0;background:#000;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .6s,visibility .6s;cursor:pointer;padding:20px;text-align:center}
+#intro.off{opacity:0;visibility:hidden}
+#intro .log{color:var(--neon);font-size:11px;line-height:2;min-height:90px;text-shadow:0 0 8px var(--neon)}
+#load{width:min(320px,70vw);height:14px;border:2px solid var(--neon);padding:2px}
+#load i{display:block;height:100%;width:0;background:var(--neon);box-shadow:0 0 12px var(--neon);animation:fill 2s steps(14) forwards}
+@keyframes fill{to{width:100%}}
+.blink{animation:bl 1s steps(2) infinite;color:var(--pink);font-size:11px}
+@keyframes bl{50%{opacity:0}}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 5vw;border-bottom:1px solid var(--line);gap:12px;flex-wrap:wrap}
+.logo{font-size:16px;color:var(--neon);text-shadow:0 0 12px var(--neon);text-decoration:none}
+nav{display:flex;gap:18px;align-items:center;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+nav a{color:var(--mut);text-decoration:none}nav a:hover{color:var(--neon)}
+#xp{font-size:10px;color:var(--neon);border:1px solid var(--neon);padding:8px 10px;box-shadow:0 0 10px rgba(57,255,20,.35)}
+.hero{text-align:center;padding:70px 5vw 40px}
+.hero h1{font-size:clamp(20px,4.6vw,38px);line-height:1.5;margin:0 0 18px;color:var(--neon);text-shadow:0 0 18px var(--neon)}
+.glitch{position:relative;display:inline-block}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;left:0;top:0;width:100%;overflow:hidden;opacity:.8}
+.glitch::before{color:var(--pink);animation:gl 3s infinite steps(1);clip-path:inset(0 0 60% 0)}
+.glitch::after{color:#00e5ff;animation:gl 3s infinite steps(1) reverse;clip-path:inset(60% 0 0 0)}
+@keyframes gl{0%,90%,100%{transform:translate(0)}92%{transform:translate(-3px,1px)}95%{transform:translate(3px,-1px)}}
+.hero p{max-width:620px;margin:0 auto;color:var(--mut);font-size:1.15rem}
+.btn{display:inline-block;background:transparent;color:var(--neon);border:2px solid var(--neon);padding:13px 20px;font-family:"Press Start 2P",monospace;font-size:11px;text-decoration:none;cursor:pointer;text-transform:uppercase;
+box-shadow:0 0 12px rgba(57,255,20,.45),inset 0 0 12px rgba(57,255,20,.15);transition:.18s}
+.btn:hover{background:var(--neon);color:#000;box-shadow:0 0 26px var(--neon);transform:translateY(-2px)}
+.btn:active{transform:translateY(1px)}
+.tag{display:inline-block;margin:26px 6px 0;font-size:10px;color:var(--mut)}
+main{max-width:1100px;margin:0 auto;padding:30px 5vw 60px}
+h2.sec{font-size:13px;color:var(--neon);margin:0 0 24px}h2.sec::before{content:"> ";color:var(--pink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:24px}
+.post{background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;opacity:0;transform:translateY(28px);transition:opacity .6s,transform .6s,border-color .2s,box-shadow .2s}
+.post.in{opacity:1;transform:none}
+.post:hover{border-color:var(--neon);box-shadow:0 0 22px rgba(57,255,20,.3)}
+.thumb{height:190px;display:flex;align-items:center;justify-content:center;font-size:76px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb span{filter:drop-shadow(0 0 14px var(--neon));transition:transform .3s}.post:hover .thumb span{transform:scale(1.18) rotate(-6deg)}
+.off{position:absolute;top:10px;right:10px;background:var(--pink);color:#fff;font-family:"Press Start 2P",monospace;font-size:10px;padding:7px 8px}
+.pb{padding:18px;display:flex;flex-direction:column;gap:11px;flex:1}
+.cat{font-size:.8rem;color:var(--pink);text-transform:uppercase;letter-spacing:2px;font-weight:700}
+.pb h3{margin:0;font-size:1.3rem;line-height:1.25}
+.pb p{margin:0;color:var(--mut);flex:1;line-height:1.45}
+.stars{color:var(--neon);letter-spacing:3px;text-shadow:0 0 8px var(--neon)}
+.price{display:flex;align-items:baseline;gap:10px}.price b{font-size:1.7rem;color:var(--neon)}.price s{color:var(--mut)}
+footer{border-top:1px solid var(--line);text-align:center;padding:30px 5vw 40px;color:var(--mut);font-size:.9rem}
+footer p{max-width:640px;margin:8px auto}
+#fly{position:fixed;top:22vh;left:-120px;z-index:40;width:96px;cursor:pointer;pointer-events:none;filter:drop-shadow(0 0 12px var(--neon))}
+#fly.go{pointer-events:auto;animation:cross 7s linear forwards}
+#fly svg{width:100%;display:block;animation:bob .9s ease-in-out infinite}
+@keyframes cross{to{left:calc(100vw + 120px)}}
+@keyframes bob{50%{transform:translateY(-22px) rotate(-6deg)}}
+.pop{position:fixed;font-family:"Press Start 2P",monospace;font-size:12px;color:var(--neon);text-shadow:0 0 8px var(--neon);z-index:60;pointer-events:none;animation:up 1s forwards}
+@keyframes up{to{transform:translateY(-60px);opacity:0}}
+a.thumb{color:inherit;text-decoration:none}.pb h3 a{color:inherit;text-decoration:none}.pb h3 a:hover{color:var(--neon)}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;margin-bottom:46px}
+.cat-tile{background:var(--card);border:1px solid var(--line);padding:22px 10px;text-align:center;text-decoration:none;color:var(--tx);font-weight:700;transition:.2s}
+.cat-tile span{display:block;font-size:44px;margin-bottom:8px;filter:drop-shadow(0 0 10px var(--neon))}
+.cat-tile:hover{border-color:var(--neon);box-shadow:0 0 20px rgba(57,255,20,.3);transform:translateY(-3px)}
+.crumb{color:var(--mut);font-size:.9rem;margin-bottom:20px}.crumb a{color:var(--neon);text-decoration:none}
+.pp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:30px}
+@media(max-width:760px){.pp{grid-template-columns:1fr}}
+.pp .thumb{height:320px;font-size:120px;border:1px solid var(--line);background:var(--card)}
+.pp h1{font-size:1.9rem;line-height:1.2;margin:6px 0 12px}
+.lists{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.lists>div{background:var(--card);border:1px solid var(--line);padding:12px 14px}
+.lists h4{margin:0 0 8px;font-family:"Press Start 2P",monospace;font-size:10px}.lists ul{margin:0;padding-left:18px;color:var(--mut)}
+.good h4{color:var(--neon)}.bad h4{color:var(--pink)}
+.cta{display:block;text-align:center;padding:18px;font-size:13px;margin-top:8px}
+.note{color:var(--mut);font-size:.85rem;margin:12px 0 0}
+.lead{color:var(--mut);font-size:1.15rem;max-width:760px;line-height:1.5}
+.rank{display:grid;grid-template-columns:70px minmax(0,1fr);gap:16px;background:var(--card);border:1px solid var(--line);padding:18px;margin-bottom:18px}
+.rank .n{font-family:"Press Start 2P",monospace;font-size:20px;color:var(--neon);text-shadow:0 0 12px var(--neon)}
+.rank h3{margin:0 0 6px}.rank .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.rank .btn{padding:11px 14px}
+.btn.alt{border-color:var(--mut);color:var(--tx);box-shadow:none}
+.tw{overflow-x:auto;margin:20px 0}table{border-collapse:collapse;width:100%;min-width:480px}
+th,td{border:1px solid var(--line);padding:10px;text-align:left}th{color:var(--neon);font-family:"Press Start 2P",monospace;font-size:9px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<div id="intro">
+  <div class="px log" id="log"></div>
+  <div id="load"><i></i></div>
+  <div class="px blink" style="font-size:14px">▶ PRESS START</div><div style="color:var(--mut);font-size:.95rem">clique, toque ou aperte uma tecla para entrar</div>
+</div>
+
+<div id="fly" title="Clique!"></div>
+
+<header>
+  <a class="logo px" href="#inicio">TMJ<span style="color:#fff">autopost</span></a>
+  <nav><a href="#categorias">Categorias</a><a href="#guias">Guias</a><a href="#ofertas">Ofertas</a><span id="xp" class="px">XP 0</span></nav>
+</header>
+
+<section class="hero" id="hero">
+  <h1 class="px"><span class="glitch" data-t="ACHADOS EM ALTA">ACHADOS EM ALTA</span><br>COM DESCONTO REAL</h1>
+  <p>Comparativos, rankings e ofertas selecionadas em várias categorias, com boa avaliação e promoção de verdade. Menos tempo pesquisando, mais tempo aproveitando.</p>
+  <a class="btn" href="#ofertas" style="margin-top:28px">▶ Ver ofertas</a>
+</section>
+
+<main id="view"></main>
+
+<footer id="sobre">
+  <p class="px" style="font-size:10px;color:var(--neon)">TMJautopost © 2026</p>
+  <p>Transparência: alguns links deste site são links de afiliado da Shopee. Se você comprar por eles, podemos receber uma comissão, sem custo extra para você. Preços e promoções podem mudar a qualquer momento.</p>
+</footer>
+
+<script>
+// ===== DADOS (no blog real, virão de arquivos .json gerados pela IA) =====
+var introDone=false;
+var CATS=[],PRODS=[],GUIAS=[];
+fetch("dados.json?t="+Date.now()).then(function(r){return r.json()}).then(function(d){CATS=d.cats||[];PRODS=d.prods||[];GUIAS=d.guias||[];route()}).catch(function(){$v.innerHTML='<p class="lead">Não foi possível carregar os dados.</p>'});
+// ===== PÁGINAS =====
+var $v=document.getElementById("view");
+function P(id){return PRODS.filter(function(p){return p.id===id})[0]}
+function getCat(id){return CATS.filter(function(c){return c.id===id})[0]}
+function G(id){return GUIAS.filter(function(g){return g.id===id})[0]}
+function ico(x){return x.img?'<img src="'+x.img+'" alt="" loading="lazy">':'<span>'+x.icon+'</span>'}
+function stars(n){return "★".repeat(n)+"☆".repeat(5-n)}
+function lis(a){return a.map(function(x){return "<li>"+x+"</li>"}).join("")}
+function card(p){var u="#produto-"+p.id;return '<article class="post"><a class="thumb" href="'+u+'">'+ico(p)+'<div class="off">-'+p.off+'%</div></a><div class="pb"><div class="cat">'+getCat(p.cat).nome+'</div><h3><a href="'+u+'">'+p.titulo+'</a></h3><div class="stars">'+stars(p.nota)+'</div><p>'+p.resumo+'</p><div class="price"><b>R$ '+p.preco+'</b><s>R$ '+p.de+'</s></div><a class="btn" href="'+u+'">Ver detalhes ▶</a></div></article>'}
+function gcard(g){var u="#guia-"+g.id;return '<article class="post"><a class="thumb" href="'+u+'">'+ico(g)+'</a><div class="pb"><div class="cat">Comparativo</div><h3><a href="'+u+'">'+g.titulo+'</a></h3><p>'+g.intro+'</p><a class="btn" href="'+u+'">Ler guia ▶</a></div></article>'}
+function vHome(){if(!PRODS.length)return '<p class="lead" style="text-align:center;margin:40px auto">Em breve, novas ofertas por aqui.</p>';return '<h2 class="sec px" id="categorias">CATEGORIAS</h2><div class="cats">'+CATS.map(function(c){return '<a class="cat-tile" href="#cat-'+c.id+'"><span>'+c.icon+'</span>'+c.nome+'</a>'}).join("")+'</div>'+
+ '<h2 class="sec px" id="guias">GUIAS E COMPARATIVOS</h2><div class="grid" style="margin-bottom:46px">'+GUIAS.map(gcard).join("")+'</div>'+
+ '<h2 class="sec px" id="ofertas">OFERTAS EM ALTA</h2><div class="grid">'+PRODS.map(card).join("")+'</div>'}
+function vCat(c){var ps=PRODS.filter(function(p){return p.cat===c.id}),gs=GUIAS.filter(function(g){return g.cat===c.id});
+ return '<div class="crumb"><a href="#inicio">Início</a> / '+c.nome+'</div><h2 class="sec px">'+c.icon+' '+c.nome.toUpperCase()+'</h2>'+
+ (gs.length?'<div class="grid" style="margin-bottom:30px">'+gs.map(gcard).join("")+'</div>':'')+'<div class="grid">'+ps.map(card).join("")+'</div>'}
+function vProd(p){var g=GUIAS.filter(function(x){return x.itens.some(function(i){return i.p===p.id})})[0];
+ return '<div class="crumb"><a href="#inicio">Início</a> / <a href="#cat-'+p.cat+'">'+getCat(p.cat).nome+'</a> / '+p.titulo+'</div><div class="pp">'+
+ '<div class="thumb">'+ico(p)+'<div class="off">-'+p.off+'%</div></div><div><div class="cat">'+getCat(p.cat).nome+'</div><h1>'+p.titulo+'</h1><div class="stars">'+stars(p.nota)+'</div>'+
+ '<div class="price" style="margin:12px 0"><b>R$ '+p.preco+'</b><s>R$ '+p.de+'</s></div><p class="lead" style="font-size:1.05rem">'+p.texto+'</p>'+
+ '<div class="lists"><div class="good"><h4>PONTOS FORTES</h4><ul>'+lis(p.pros)+'</ul></div><div class="bad"><h4>ATENÇÃO</h4><ul>'+lis(p.contras)+'</ul></div></div>'+
+ '<a class="btn cta" href="'+p.link+'" target="_blank" rel="sponsored nofollow noopener">⚡ Ir para a oferta na Shopee</a>'+
+ '<p class="note">Link de afiliado: você paga o mesmo e nós podemos receber uma comissão. Preço e disponibilidade podem mudar.</p>'+
+ (g?'<p class="note">Veja também: <a href="#guia-'+g.id+'" style="color:var(--neon)">'+g.titulo+'</a></p>':'')+'</div></div>'}
+function vGuia(g){return '<div class="crumb"><a href="#inicio">Início</a> / <a href="#cat-'+g.cat+'">'+getCat(g.cat).nome+'</a> / Guia</div><h1 class="px" style="font-size:clamp(16px,3.4vw,26px);line-height:1.5;color:var(--neon)">'+g.titulo.toUpperCase()+'</h1><p class="lead">'+g.intro+'</p>'+
+ '<div class="tw"><table><tr><th>#</th><th>Produto</th><th>Nota</th><th>Preço</th><th>Ideal para</th></tr>'+g.itens.map(function(i,n){var p=P(i.p);return '<tr><td>'+(n+1)+'</td><td><a href="#produto-'+p.id+'" style="color:var(--tx)">'+p.titulo+'</a></td><td class="stars">'+stars(p.nota)+'</td><td>R$ '+p.preco+'</td><td>'+i.label+'</td></tr>'}).join("")+'</table></div>'+
+ g.itens.map(function(i,n){var p=P(i.p);return '<div class="rank"><div class="n">#'+(n+1)+'</div><div><div class="cat">'+i.label+'</div><h3>'+p.titulo+'</h3><div class="stars">'+stars(p.nota)+'</div><p style="color:var(--mut)">'+i.veredito+' '+p.texto+'</p><div class="price"><b>R$ '+p.preco+'</b><s>R$ '+p.de+'</s></div>'+
+ '<div class="row"><a class="btn alt" href="#produto-'+p.id+'">Ver detalhes</a><a class="btn" href="'+p.link+'" target="_blank" rel="sponsored nofollow noopener">⚡ Pegar oferta</a></div></div></div>'}).join("")}
+// ===== ROTEADOR (links com # simples) =====
+function route(){var h=location.hash.slice(1),m,html,hero=false,t="TMJautopost — Ofertas e comparativos";
+ if((m=h.match(/^produto-(.+)$/))&&P(m[1])){html=vProd(P(m[1]));t=P(m[1]).titulo+" — TMJautopost"}
+ else if((m=h.match(/^cat-(.+)$/))&&getCat(m[1])){html=vCat(getCat(m[1]));t=getCat(m[1]).nome+" — TMJautopost"}
+ else if((m=h.match(/^guia-(.+)$/))&&G(m[1])){html=vGuia(G(m[1]));t=G(m[1]).titulo+" — TMJautopost"}
+ else{html=vHome();hero=true}
+ $v.innerHTML=html;document.title=t;document.getElementById("hero").style.display=hero?"":"none";
+ var el=hero&&h?document.getElementById(h):null;if(el)el.scrollIntoView();else scrollTo(0,0);
+ if(introDone)reveal()}
+
+// ===== INTRO ESTILO BOOT =====
+var intro=document.getElementById("intro"),log=document.getElementById("log");
+var lines=["> INICIANDO TMJAUTOPOST...","> CARREGANDO OFERTAS...","> JOGADOR 1 PRONTO"],li=0;
+(function t(){if(li<lines.length){log.innerHTML+=lines[li++]+"<br>";setTimeout(t,600)}})();
+function endIntro(){if(introDone)return;intro.classList.add("off");introDone=true;reveal();setTimeout(fly,1500)}
+intro.onclick=endIntro;addEventListener("keydown",endIntro);
+
+// ===== ANIMAÇÃO DE ENTRADA DOS CARDS + BARRA DE SCROLL =====
+var obs=("IntersectionObserver" in window)?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");obs.unobserve(e.target)}})},{threshold:.15}):null;
+function reveal(){document.querySelectorAll(".post").forEach(function(el,i){el.style.transitionDelay=(i*120)+"ms";obs?obs.observe(el):el.classList.add("in")})}
+addEventListener("scroll",function(){var h=document.documentElement;document.getElementById("bar").style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+"%"});
+
+// ===== MASCOTE PIXEL ORIGINAL VOANDO =====
+var C={G:"#0bd35a",X:"#39ff14",W:"#ffffff",R:"#ff2e88"};
+var FA=["X..........X","XX........XX","XXX.GGGG.XXX",".XXGGGGGGXX.","..GGWGGWGG..","..GGGGGGGG..","...GRRRRG...","....GGGG...."];
+var FB=["............","............","...GGGGGG...","XXXGGGGGGXXX","XXGGWGGWGGXX",".XGGGGGGGGX.","...GRRRRG...","....GGGG...."];
+function svg(f){var r="";f.forEach(function(row,y){for(var x=0;x<12;x++){var c=C[row[x]];if(c)r+='<rect x="'+x+'" y="'+y+'" width="1.02" height="1.02" fill="'+c+'"/>'}});
+ return '<svg viewBox="0 0 12 8" shape-rendering="crispEdges">'+r+'</svg>'}
+var fl=document.getElementById("fly"),fr=0;
+setInterval(function(){fl.innerHTML=svg(fr++%2?FB:FA)},260);
+function fly(){fl.style.top=(15+Math.random()*45)+"vh";fl.classList.remove("go");void fl.offsetWidth;fl.classList.add("go")}
+fl.addEventListener("animationend",function(e){if(e.animationName==="cross"){fl.classList.remove("go");setTimeout(fly,9000+Math.random()*6000)}});
+
+// ===== XP =====
+var xp=0;
+function gain(n,x,y){xp+=n;document.getElementById("xp").textContent="XP "+xp;
+ var p=document.createElement("div");p.className="pop";p.textContent="+"+n+" XP";p.style.left=x+"px";p.style.top=y+"px";document.body.appendChild(p);setTimeout(function(){p.remove()},1000)}
+fl.addEventListener("click",function(e){gain(50,e.clientX,e.clientY);fl.classList.remove("go");setTimeout(fly,6000)});
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest(".btn");if(b)gain(10,e.clientX,e.clientY)});
+addEventListener("hashchange",route);
+</script>
+</body>
+</html>
